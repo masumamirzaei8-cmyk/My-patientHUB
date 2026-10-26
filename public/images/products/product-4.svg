@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 400" role="img" aria-label="Minimalist clean eating bowl">
+  <defs><linearGradient id="pb4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F1F5F9"/><stop offset="1" stop-color="#E2E8F0"/></linearGradient></defs>
+  <rect width="480" height="400" fill="url(#pb4)"/>
+  <circle cx="410" cy="60" r="110" fill="#fff" opacity=".18"/>
+  <circle cx="50" cy="360" r="130" fill="#fff" opacity=".14"/>
+  
+  <ellipse cx="240" cy="352" rx="150" ry="18" fill="#000" opacity=".12"/>
+  <ellipse cx="240" cy="232" rx="144" ry="16" fill="#E2E8F0"/>
+  <g>
+    <path d="M110 226 C130 170 200 160 240 190 L240 232 H110 Z" fill="#FCD34D"/>
+    <ellipse cx="180" cy="205" rx="64" ry="28" fill="#FBBF24"/>
+    <ellipse cx="320" cy="208" rx="62" ry="30" fill="#F8FAFC"/>
+    <circle cx="320" cy="206" r="20" fill="#FB923C"/>
+    <path d="M232 230 C226 176 262 150 296 168 C320 182 300 232 262 238 Z" fill="#65A30D"/>
+    <ellipse cx="262" cy="196" rx="14" ry="18" fill="#BEF264"/><circle cx="262" cy="204" r="9" fill="#92400E"/>
+    <circle cx="150" cy="190" r="9" fill="#DC2626"/><circle cx="176" cy="176" r="8" fill="#DC2626"/><circle cx="360" cy="186" r="8" fill="#16A34A"/>
+  </g>
+  <path d="M96 232 H384 C384 316 328 354 240 354 C152 354 96 316 96 232 Z" fill="#475569"/>
+  <path d="M96 232 H384 C384 246 382 258 378 270 H102 C98 258 96 246 96 232 Z" fill="#fff" opacity=".28"/>
+</svg>

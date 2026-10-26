@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 400" role="img" aria-label="Wellness package">
+  <defs><linearGradient id="pb7" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FCE7F3"/><stop offset="1" stop-color="#E9D5FF"/></linearGradient></defs>
+  <rect width="480" height="400" fill="url(#pb7)"/>
+  <circle cx="410" cy="60" r="110" fill="#fff" opacity=".18"/>
+  <circle cx="50" cy="360" r="130" fill="#fff" opacity=".14"/>
+  
+  <ellipse cx="240" cy="352" rx="140" ry="17" fill="#000" opacity=".12"/>
+  <ellipse cx="240" cy="330" rx="104" ry="20" fill="#CBD5E1"/><ellipse cx="240" cy="318" rx="92" ry="16" fill="#E2E8F0"/>
+  <ellipse cx="240" cy="296" rx="64" ry="14" fill="#94A3B8"/><ellipse cx="240" cy="286" rx="56" ry="12" fill="#CBD5E1"/>
+  <g transform="translate(240 270)">
+    <path d="M0 -4 C-30 -40 -30 -90 0 -128 C30 -90 30 -40 0 -4 Z" fill="#F472B6"/>
+    <path d="M-6 -2 C-62 -22 -84 -70 -76 -108 C-36 -92 -10 -50 -6 -2 Z" fill="#FB7185"/>
+    <path d="M6 -2 C62 -22 84 -70 76 -108 C36 -92 10 -50 6 -2 Z" fill="#FB7185"/>
+    <path d="M-10 0 C-80 -2 -118 -34 -122 -60 C-80 -66 -34 -42 -10 0 Z" fill="#F9A8D4"/>
+    <path d="M10 0 C80 -2 118 -34 122 -60 C80 -66 34 -42 10 0 Z" fill="#F9A8D4"/>
+  </g>
+  <rect x="352" y="250" width="54" height="82" rx="10" fill="#FEF3C7"/><rect x="352" y="250" width="54" height="16" rx="8" fill="#FDE68A"/>
+  <path d="M379 246 C370 232 380 222 379 210 C390 222 392 234 379 246 Z" fill="#F97316"/>
+  <g fill="#34D399"><path d="M92 330 C80 290 100 262 120 258 C124 290 112 318 92 330 Z"/><path d="M116 336 C112 300 136 280 158 282 C156 312 140 332 116 336 Z"/></g>
+</svg>

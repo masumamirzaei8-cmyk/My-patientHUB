@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 400" role="img" aria-label="Health monitoring accessories">
+  <defs><linearGradient id="pb9" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DBEAFE"/><stop offset="1" stop-color="#BFDBFE"/></linearGradient></defs>
+  <rect width="480" height="400" fill="url(#pb9)"/>
+  <circle cx="410" cy="60" r="110" fill="#fff" opacity=".18"/>
+  <circle cx="50" cy="360" r="130" fill="#fff" opacity=".14"/>
+  
+  <ellipse cx="240" cy="352" rx="150" ry="18" fill="#000" opacity=".12"/>
+  <rect x="96" y="120" width="170" height="214" rx="26" fill="#FFFFFF"/>
+  <rect x="96" y="120" width="170" height="214" rx="26" fill="none" stroke="#CBD5E1" stroke-width="4"/>
+  <rect x="114" y="140" width="134" height="86" rx="12" fill="#0F172A"/>
+  <text x="130" y="188" font-family="Arial, sans-serif" font-size="40" font-weight="700" fill="#34D399">120</text>
+  <text x="186" y="214" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#60A5FA">80</text>
+  <path d="M124 214 h30 l8 -16 l12 28 l8 -12 h20" fill="none" stroke="#F472B6" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="181" cy="274" r="26" fill="#EF4444"/><path d="M181 284 c-12 -8 -16 -14 -16 -20 a8 8 0 0 1 16 -2 a8 8 0 0 1 16 2 c0 6 -4 12 -16 20 Z" fill="#fff"/>
+  <path d="M266 236 C320 230 352 250 352 290 C352 322 320 336 266 328" fill="none" stroke="#38BDF8" stroke-width="30" stroke-linecap="round"/>
+  <path d="M266 236 C320 230 352 250 352 290 C352 322 320 336 266 328" fill="none" stroke="#7DD3FC" stroke-width="8" stroke-linecap="round" stroke-dasharray="2 26"/>
+  <circle cx="372" cy="150" r="30" fill="#fff" opacity=".9"/><path d="M372 164 c-14 -9 -18 -16 -18 -23 a9 9 0 0 1 18 -3 a9 9 0 0 1 18 3 c0 7 -4 14 -18 23 Z" fill="#EF4444"/>
+</svg>

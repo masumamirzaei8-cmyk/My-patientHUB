@@ -1,0 +1,1506 @@
+@import "tailwindcss";
+@import "react-day-picker/dist/style.css";
+
+@theme {
+  --color-primary-pink: #E60093;
+  --color-primary-purple: #A020B5;
+  --color-primary-blue: #2680F7;
+  --color-primary-cyan: #20BFE5;
+  --color-bg: #F5F7FB;
+  --color-card: #FFFFFF;
+  --color-text-main: #344054;
+  --color-text-secondary: #7B8494;
+  --color-border: #E5E7EB;
+  --color-success: #22A06B;
+  --color-warning: #F4B400;
+  --color-error: #E5484D;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text-main);
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+.animate-fadeIn { animation: fadeIn 0.3s ease-out; }
+.animate-slideIn { animation: slideIn 0.3s ease-out; }
+
+.card-hover { transition: all 0.2s ease; }
+.card-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
+
+/* Sidebar active state - white bg with pink/purple icon */
+.sidebar-active {
+  background: white !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  color: var(--color-primary-pink) !important;
+}
+.sidebar-active svg, .sidebar-active span { color: var(--color-primary-pink) !important; }
+
+/* Primary button - pink/purple gradient */
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary-pink), var(--color-primary-purple));
+  color: white;
+  border: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.625rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(230, 0, 147, 0.3); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.btn-secondary {
+  background: white;
+  color: var(--color-primary-pink);
+  border: 2px solid var(--color-primary-pink);
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.625rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-secondary:hover { background: var(--color-primary-pink); color: white; }
+
+.btn-blue {
+  background: linear-gradient(135deg, var(--color-primary-blue), var(--color-primary-cyan));
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-blue:hover { opacity: 0.9; }
+
+.btn-danger {
+  background: var(--color-error);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-primary-pink);
+  box-shadow: 0 0 0 3px rgba(230, 0, 147, 0.1);
+}
+
+@media (max-width: 768px) {
+  .responsive-table { display: block; overflow-x: auto; white-space: nowrap; }
+}
+
+/* Login banner gradient */
+.login-banner {
+  background: linear-gradient(135deg, #E60093 0%, #A020B5 30%, #2680F7 60%, #20BFE5 100%);
+  position: relative;
+  overflow: hidden;
+}
+.login-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.login-banner::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 40%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+/* Decorative shapes for login banner */
+.login-banner .shape-1 {
+  position: absolute;
+  top: 10%;
+  right: 15%;
+  width: 80px;
+  height: 80px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+.login-banner .shape-2 {
+  position: absolute;
+  bottom: 15%;
+  left: 10%;
+  width: 60px;
+  height: 60px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  animation: float 8s ease-in-out infinite reverse;
+}
+.login-banner .shape-3 {
+  position: absolute;
+  top: 30%;
+  left: 25%;
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 50%;
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Health index gradient */
+.health-gradient {
+  background: linear-gradient(135deg, #22A06B, #20BFE5);
+}
+
+/* Enhanced card styles */
+.promo-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.promo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Doctor card styles */
+.doctor-card {
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.doctor-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(230, 0, 147, 0.12);
+}
+
+.doctor-card-image {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: linear-gradient(135deg, #fce7f3, #e9d5ff);
+  position: relative;
+}
+
+.doctor-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+/* Clinic and Pharmacy cards */
+.facility-card {
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.facility-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(38, 128, 247, 0.12);
+}
+
+/* Product cards */
+.product-card {
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(230, 0, 147, 0.12);
+}
+
+.product-card-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #fef3c7, #fce7f3);
+  border-radius: 1rem 1rem 0 0;
+  position: relative;
+}
+
+.product-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Dependent profile cards */
+.dependent-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.dependent-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(160, 32, 181, 0.1);
+}
+
+/* Form enhancements */
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #E60093;
+  box-shadow: 0 0 0 3px rgba(230, 0, 147, 0.1);
+}
+
+.form-input:hover:not(:focus) {
+  border-color: #d1d5db;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #344054;
+  margin-bottom: 0.5rem;
+}
+
+/* Badge styles */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-success {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badge-warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge-error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.badge-info {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+/* Day picker customization */
+.rdp {
+  --rdp-cell-size: 40px;
+  --rdp-accent-color: #E60093;
+  --rdp-background-color: rgba(230, 0, 147, 0.1);
+  margin: 0;
+}
+
+.rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
+  background-color: rgba(230, 0, 147, 0.1);
+}
+
+.rdp-day_selected {
+  background-color: #E60093 !important;
+  color: white !important;
+}
+
+/* Search bar enhancement */
+.search-bar {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.search-bar:focus-within {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(230, 0, 147, 0.15);
+}
+
+/* Chat message styles */
+.chat-message {
+  max-width: 70%;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  animation: messageSlide 0.3s ease;
+}
+
+@keyframes messageSlide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat-message-sent {
+  background: linear-gradient(135deg, #E60093, #A020B5);
+  color: white;
+  border-bottom-right-radius: 0.25rem;
+}
+
+.chat-message-received {
+  background: #f3f4f6;
+  color: #344054;
+  border-bottom-left-radius: 0.25rem;
+}
+
+/* Toast notification styles */
+.toast-custom {
+  background: white !important;
+  color: #344054 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+  border-radius: 0.75rem !important;
+  padding: 1rem 1.5rem !important;
+}
+
+/* Responsive table improvements */
+@media (max-width: 768px) {
+  .responsive-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .responsive-table::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .responsive-table::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+  }
+}
+
+/* Dashboard Styles */
+.dashboard-container {
+  padding: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.dashboard-welcome {
+  margin-bottom: 2rem;
+}
+
+.dashboard-welcome h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin: 0 0 0.5rem 0;
+}
+
+.dashboard-welcome p {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.stat-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin: 0;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin: 0.25rem 0 0 0;
+}
+
+/* Charts Grid */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Dashboard Card */
+.dashboard-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid #f0f0f0;
+}
+
+.dashboard-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dashboard-card-title h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+.dashboard-card-icon {
+  color: var(--color-primary-pink);
+}
+
+.more-details-btn {
+  background: linear-gradient(135deg, var(--color-primary-pink), var(--color-primary-purple));
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.more-details-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(230, 0, 147, 0.3);
+}
+
+.dashboard-card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Chart Wrapper */
+.chart-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Donut Chart */
+.donut-chart-container {
+  position: relative;
+  display: inline-block;
+}
+
+.donut-chart {
+  display: block;
+}
+
+.donut-segment {
+  cursor: pointer;
+  transition: stroke-width 0.2s ease;
+}
+
+.donut-center-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  fill: var(--color-text-main);
+}
+
+.donut-tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+/* Chart Legend */
+.chart-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.chart-legend-color {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.25rem;
+  flex-shrink: 0;
+}
+
+.chart-legend-label {
+  flex: 1;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.chart-legend-value {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+/* Health Index */
+.health-index-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.health-score {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.health-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #22A06B, #20BFE5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.health-trend {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #22A06B;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Health Trend Chart */
+.health-trend-chart {
+  width: 100%;
+}
+
+.trend-svg {
+  width: 100%;
+  height: auto;
+}
+
+.trend-point {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.trend-point:hover {
+  r: 7;
+}
+
+.trend-label {
+  font-size: 0.75rem;
+  fill: var(--color-text-secondary);
+}
+
+/* Additional Sections */
+.additional-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Appointments List */
+.appointments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.appointment-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.appointment-item:hover {
+  background: #f3f4f6;
+}
+
+.appointment-icon {
+  font-size: 1.5rem;
+}
+
+.appointment-info {
+  flex: 1;
+}
+
+.appointment-doctor {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+.appointment-specialty {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin: 0.25rem 0 0 0;
+}
+
+.appointment-time {
+  text-align: right;
+}
+
+.appointment-date {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+.appointment-hour {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin: 0.25rem 0 0 0;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--color-text-secondary);
+  padding: 2rem;
+  font-size: 0.875rem;
+}
+
+/* Activity List */
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 0.75rem;
+}
+
+.activity-icon {
+  font-size: 1.5rem;
+}
+
+.activity-info {
+  flex: 1;
+}
+
+.activity-message {
+  font-size: 0.875rem;
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+.activity-time {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin: 0.25rem 0 0 0;
+}
+
+/* Notifications List */
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.notification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 0.75rem;
+  border-left: 3px solid transparent;
+}
+
+.notification-item.unread {
+  background: #fef3c7;
+  border-left-color: var(--color-warning);
+}
+
+.notification-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-pink);
+}
+
+.notification-info {
+  flex: 1;
+}
+
+.notification-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+.notification-message {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin: 0.25rem 0 0 0;
+}
+
+.notification-time {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin: 0.25rem 0 0 0;
+}
+
+/* Quick Actions */
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+}
+
+.quick-action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quick-action-btn:hover {
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.quick-action-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quick-action-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  text-align: center;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 1rem;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.modal-header h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 0;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background: #f3f4f6;
+  color: var(--color-text-main);
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+/* Modal Details */
+.modal-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.modal-description {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.detail-color {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.25rem;
+  flex-shrink: 0;
+}
+
+.detail-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detail-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.detail-bar {
+  width: 100%;
+  height: 0.5rem;
+  background: #f0f0f0;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.detail-bar-fill {
+  height: 100%;
+  border-radius: 0.25rem;
+  transition: width 0.3s ease;
+}
+
+.detail-value {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  min-width: 3rem;
+  text-align: right;
+}
+
+.details-summary {
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.details-summary p {
+  font-size: 0.875rem;
+  color: var(--color-text-main);
+  margin: 0 0 0.5rem 0;
+}
+
+.demo-note {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+/* Health Details Modal */
+.health-details-score {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+  border-radius: 1rem;
+}
+
+.health-big-score {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #22A06B, #20BFE5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.health-trend-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #22A06B;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.health-trend-data {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.health-trend-data h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+.trend-data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 0.75rem;
+}
+
+.trend-data-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  background: #f9fafb;
+  border-radius: 0.5rem;
+}
+
+.trend-day {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+.trend-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1rem;
+  }
+
+  .dashboard-welcome h1 {
+    font-size: 1.5rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .charts-grid,
+  .additional-sections {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-wrapper {
+    gap: 1rem;
+  }
+
+  .health-score {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .health-value {
+    font-size: 2rem;
+  }
+
+  .quick-actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    padding: 1rem;
+  }
+
+  .dashboard-card {
+    padding: 1rem;
+  }
+
+  .modal-content {
+    margin: 0.5rem;
+  }
+}
+
+/* ============================================
+   DARK MODE STYLES
+   ============================================ */
+
+/* Dark mode color variables */
+:root.dark {
+  --color-bg: #0f172a;
+  --color-card: #1e293b;
+  --color-text-main: #e2e8f0;
+  --color-text-secondary: #94a3b8;
+  --color-border: #334155;
+}
+
+/* Dark mode base styles */
+:root.dark body {
+  background: var(--color-bg);
+  color: var(--color-text-main);
+}
+
+/* Dark mode scrollbar */
+:root.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+:root.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+:root.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Dark mode cards and containers */
+:root.dark .bg-white,
+:root.dark .dashboard-card,
+:root.dark .stat-card,
+:root.dark .doctor-card,
+:root.dark .facility-card,
+:root.dark .product-card,
+:root.dark .dependent-card,
+:root.dark .promo-card {
+  background: var(--color-card) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text-main) !important;
+}
+
+/* Dark mode text colors */
+:root.dark .text-gray-800,
+:root.dark .text-gray-700,
+:root.dark .text-gray-600 {
+  color: var(--color-text-main) !important;
+}
+
+:root.dark .text-gray-500,
+:root.dark .text-gray-400 {
+  color: var(--color-text-secondary) !important;
+}
+
+/* Dark mode backgrounds */
+:root.dark .bg-gray-50,
+:root.dark .bg-gray-100 {
+  background: #1e293b !important;
+}
+
+:root.dark .bg-purple-50,
+:root.dark .bg-pink-50,
+:root.dark .bg-blue-50,
+:root.dark .bg-cyan-50,
+:root.dark .bg-amber-50,
+:root.dark .bg-green-50,
+:root.dark .bg-indigo-50 {
+  background: rgba(124, 58, 237, 0.1) !important;
+}
+
+/* Dark mode borders */
+:root.dark .border-gray-100,
+:root.dark .border-gray-200 {
+  border-color: var(--color-border) !important;
+}
+
+/* Dark mode inputs */
+:root.dark input,
+:root.dark select,
+:root.dark textarea {
+  background: #1e293b !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text-main) !important;
+}
+
+:root.dark input::placeholder,
+:root.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+:root.dark input:disabled,
+:root.dark select:disabled,
+:root.dark textarea:disabled {
+  background: #0f172a !important;
+  color: #64748b !important;
+}
+
+/* Dark mode buttons */
+:root.dark .btn-secondary {
+  background: var(--color-card) !important;
+  color: var(--color-primary-pink) !important;
+  border-color: var(--color-primary-pink) !important;
+}
+
+:root.dark .btn-secondary:hover {
+  background: var(--color-primary-pink) !important;
+  color: white !important;
+}
+
+/* Dark mode sidebar */
+:root.dark aside {
+  background: var(--color-card) !important;
+  border-color: var(--color-border) !important;
+}
+
+:root.dark .sidebar-active {
+  background: linear-gradient(135deg, var(--color-primary-pink), var(--color-primary-purple)) !important;
+  color: white !important;
+}
+
+:root.dark aside button:hover {
+  background: rgba(124, 58, 237, 0.1) !important;
+}
+
+/* Dark mode navbar */
+:root.dark header {
+  background: var(--color-card) !important;
+  border-color: var(--color-border) !important;
+}
+
+/* Dark mode modals */
+:root.dark .modal-content {
+  background: var(--color-card) !important;
+  border-color: var(--color-border) !important;
+}
+
+:root.dark .modal-overlay {
+  background: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Dark mode tables */
+:root.dark table {
+  background: var(--color-card) !important;
+}
+
+:root.dark thead {
+  background: #0f172a !important;
+}
+
+:root.dark tbody tr {
+  border-color: var(--color-border) !important;
+}
+
+:root.dark tbody tr:hover {
+  background: rgba(124, 58, 237, 0.05) !important;
+}
+
+/* Dark mode badges */
+:root.dark .badge-success {
+  background: rgba(34, 160, 107, 0.2) !important;
+  color: #4ade80 !important;
+}
+
+:root.dark .badge-warning {
+  background: rgba(244, 180, 0, 0.2) !important;
+  color: #fbbf24 !important;
+}
+
+:root.dark .badge-error {
+  background: rgba(229, 72, 77, 0.2) !important;
+  color: #f87171 !important;
+}
+
+:root.dark .badge-info {
+  background: rgba(38, 128, 247, 0.2) !important;
+  color: #60a5fa !important;
+}
+
+/* Dark mode charts */
+:root.dark .donut-center-text {
+  fill: var(--color-text-main) !important;
+}
+
+:root.dark .trend-label {
+  fill: var(--color-text-secondary) !important;
+}
+
+/* Dark mode notifications */
+:root.dark .notification-item.unread {
+  background: rgba(244, 180, 0, 0.1) !important;
+}
+
+/* Dark mode appointment items */
+:root.dark .appointment-item,
+:root.dark .activity-item {
+  background: #0f172a !important;
+}
+
+:root.dark .appointment-item:hover,
+:root.dark .activity-item:hover {
+  background: rgba(124, 58, 237, 0.1) !important;
+}
+
+/* Dark mode quick actions */
+:root.dark .quick-action-btn {
+  background: #0f172a !important;
+}
+
+:root.dark .quick-action-btn:hover {
+  background: var(--color-card) !important;
+}
+
+/* Dark mode detail items */
+:root.dark .detail-item {
+  background: #0f172a !important;
+}
+
+/* Dark mode health score */
+:root.dark .health-details-score {
+  background: linear-gradient(135deg, rgba(34, 160, 107, 0.1), rgba(32, 191, 229, 0.1)) !important;
+}
+
+/* Dark mode trend data */
+:root.dark .trend-data-item {
+  background: #0f172a !important;
+}
+
+/* Dark mode auth pages */
+:root.dark .auth-page {
+  background: var(--color-bg) !important;
+}
+
+:root.dark .auth-card {
+  background: var(--color-card) !important;
+  border-color: var(--color-border) !important;
+}
+
+:root.dark .auth-footer {
+  background: var(--color-card) !important;
+  border-color: var(--color-border) !important;
+}
+
+:root.dark .auth-social-btn {
+  background: var(--color-card) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text-main) !important;
+}
+
+:root.dark .auth-social-btn:hover {
+  background: #0f172a !important;
+}
+
+/* Dark mode transitions */
+:root.dark * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Dark mode shadows */
+:root.dark .shadow-sm,
+:root.dark .shadow-md,
+:root.dark .shadow-lg,
+:root.dark .shadow-xl {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Dark mode hover effects */
+:root.dark .card-hover:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Dark mode focus states */
+:root.dark input:focus,
+:root.dark select:focus,
+:root.dark textarea:focus {
+  border-color: var(--color-primary-pink) !important;
+  box-shadow: 0 0 0 3px rgba(230, 0, 147, 0.2) !important;
+}
+
+/* Dark mode links */
+:root.dark a {
+  color: var(--color-primary-pink) !important;
+}
+
+:root.dark a:hover {
+  color: var(--color-primary-purple) !important;
+}
+
+/* Dark mode specific text colors */
+:root.dark .text-purple-600,
+:root.dark .text-pink-600 {
+  color: var(--color-primary-pink) !important;
+}
+
+:root.dark .text-blue-600 {
+  color: var(--color-primary-blue) !important;
+}
+
+:root.dark .text-green-600 {
+  color: var(--color-success) !important;
+}
+
+:root.dark .text-red-600 {
+  color: var(--color-error) !important;
+}
+
+:root.dark .text-amber-600 {
+  color: var(--color-warning) !important;
+}
